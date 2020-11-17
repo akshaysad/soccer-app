@@ -16,18 +16,18 @@ class SignUpComponent extends React.Component {
         super(props);
         this.state = {
              playersPool : [
-                {id:1, name:"sam", skills:3},
-                {id:2, name:"Donald", skills:1},
-                {id:3, name:"ram", skills:8},
-                {id:4, name:"john", skills:5},
-                {id:5, name:"messi", skills:6},
-                {id:6, name:"sammy", skills:5},
-                {id:7, name:"jimmy", skills:3},
-                {id:8, name:"stephan", skills:8},
-                {id:9, name:"paul", skills:1},
-                {id:10, name:"saul", skills:5},
-                {id:11, name:"david", skills:6},
-                {id:12, name:"jacob", skills:1},
+                {id:1, name:"sam", skills:3, description:"decent ball control and field vision."},
+                {id:2, name:"Donald", skills:1, description:"irregular ball control and shooting"},
+                {id:3, name:"ram", skills:8, description:"our local messi / ronaldo"},
+                {id:4, name:"john", skills:5, description:"good ball control and good shot"},
+                {id:5, name:"messi", skills:6, description:"good play maker"},
+                {id:6, name:"sammy", skills:5, description:"good ball control and good shot"},
+                {id:7, name:"jimmy", skills:3, description:"decent ball control and field vision."},
+                {id:8, name:"stephan", skills:8, description:"our local messi / ronaldo"},
+                {id:9, name:"paul", skills:1, description:"irregular ball control and shooting"},
+                {id:10, name:"saul", skills:5, description:"good ball control and good shot"},
+                {id:11, name:"david", skills:6, description:"good play maker"},
+                {id:12, name:"jacob", skills:1, description:"irregular ball control and shooting"},
             ],
             allPlayer: [],
             allSkills:null,
@@ -53,10 +53,6 @@ class SignUpComponent extends React.Component {
                 players.push(this.state.playersPool[idx -1]);
             }
         }
-        this.allPlayers(players);
-    }
-
-    allPlayers(players){
         let countSkill=0;
         for (let i = 0; i < players.length; i++) {
             this.setState(prevState => ({
@@ -67,6 +63,7 @@ class SignUpComponent extends React.Component {
         }
         this.setState({allSkills:countSkill});
     }
+
 
     shuffle(array) {
         let currentIndex = array.length, temporaryValue, randomIndex;
@@ -87,8 +84,6 @@ class SignUpComponent extends React.Component {
         }
         this.shuffle(playerList);
         let half_length = Math.ceil(playerList.length / 2);
-        console.log(this.state.allPlayer);
-
         let rightSide = playerList.splice(5,half_length);
         let leftSide = playerList.splice(0,half_length);
 
@@ -136,10 +131,9 @@ class SignUpComponent extends React.Component {
                           <a href="#!" className="secondary-content"><i className="material-icons">Skills:{player.skills}</i></a>
                       </div>
 
-                      {/*<div className="card-action">*/}
-                      {/*<a href="#">This is a link</a>*/}
-                      {/*<a href="#">This is a link</a>*/}
-                      {/*</div>*/}
+                      <div className="card-action">
+                      <a href="#">{player.description}</a>
+                      </div>
                       </div>
                       </div>
 
@@ -161,11 +155,9 @@ class SignUpComponent extends React.Component {
                                       <span className="title">{player.name}</span>
                                       <a href="#!" className="secondary-content"><i className="material-icons">Skills:{player.skills}</i></a>
                                   </div>
-
-                                  {/*<div className="card-action">*/}
-                                  {/*    <a href="#">This is a link</a>*/}
-                                  {/*    <a href="#">This is a link</a>*/}
-                                  {/*</div>*/}
+                                  <div className="card-action">
+                                  <a href="#">{player.description}</a>
+                              </div>
                               </div>
                           </div>
                       )}
