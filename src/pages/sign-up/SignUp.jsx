@@ -30,7 +30,7 @@ class SignUpComponent extends React.Component {
                 {id:12, name:"jacob", skills:1, description:"irregular ball control and shooting"},
             ],
             allPlayer: [],
-            allSkills:null,
+            averageSkills:null,
             firstTeam: [],
             secondTeam:[],
 
@@ -61,7 +61,8 @@ class SignUpComponent extends React.Component {
 
             countSkill = players[i].skills + countSkill;
         }
-        this.setState({allSkills:countSkill});
+
+        this.setState({averageSkills:countSkill/2});
     }
 
 
@@ -79,6 +80,8 @@ class SignUpComponent extends React.Component {
 
     makeTeams(){
         let playerList= [];
+        let teamOneSkills = 0;
+        let teamTwoSkills = 0;
         for (let i = 0; i <  this.state.allPlayer.length ;i++) {
         playerList.push(this.state.allPlayer[i])
         }
@@ -86,13 +89,26 @@ class SignUpComponent extends React.Component {
         let half_length = Math.ceil(playerList.length / 2);
         let rightSide = playerList.splice(5,half_length);
         let leftSide = playerList.splice(0,half_length);
-
+        for (let team of leftSide) {
+            teamOneSkills = team.skills + teamOneSkills;
+        }
+        for (let team of rightSide) {
+            teamTwoSkills = team.skills + teamTwoSkills;
+        }
+        const difference= Math.abs(teamOneSkills - teamTwoSkills);
+        if(difference !==0 && difference >1 ) {
+            this.setState({balanced: "not_balanced" });
+        } else {
+            this.setState({balanced: "balanced" });
+        }
         this.setState({
-            secondTeam: rightSide
-        });
-        this.setState({
+            secondTeam: rightSide,
+            teamOneSkills,
+            teamTwoSkills,
             firstTeam: leftSide
+
         });
+
 
     }
 
@@ -140,8 +156,46 @@ class SignUpComponent extends React.Component {
                   )}
                   </ul>
               </div>
-              <div className="col s2">
-                  <p>Vs</p>
+              <div className="col s2 " style={{textAlign: "center"}}>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                    <label>Average</label>
+                  <p>{this.state.averageSkills}</p>
+                  <br/>
+
+                  {this.state.teamTwoSkills &&
+                  <div>
+                      <label>Team One</label>
+                  <p>{this.state.teamOneSkills}</p>
+
+                  <br/>
+                  </div>
+                  }
+
+                  {this.state.teamTwoSkills &&
+                      <div>
+                      <label>Team Two</label>
+                  <p>{this.state.teamTwoSkills}</p>
+                      </div>
+                  }
+                  <br/>
+
+                  {this.state.balanced != undefined && this.state.balanced === "not_balanced" &&
+                  <div>
+                      <h4 style={{color: "red"}}>NOT BALANCED</h4>
+                      <br/>
+                      <button onClick={this.makeTeams} className="waves-effect waves-light red btn">Retry</button>
+                  </div>
+                  }
+                  {this.state.balanced != undefined && this.state.balanced === "balanced" &&
+                  <div>
+                      <h4 style={{color: "#64dd17"}}>BALANCED</h4>
+                      <br/>
+                  </div>
+                  }
+
               </div>
               <div className="col s4">
                   <ul className="collection">
