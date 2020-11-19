@@ -30,7 +30,7 @@ class SignUpComponent extends React.Component {
                 },
                 {
                     x: 0,
-                    y: 100
+                    y: 50
                 },
                 {
                     x: -150,
@@ -269,7 +269,7 @@ class SignUpComponent extends React.Component {
         return (
       <div>
           <div className="row">
-              <div className="col s2">
+              <div className="col s3">
           <ul className="collection">
 
           {this.state.allPlayer && this.state.allPlayer.map((player)=>
@@ -285,10 +285,7 @@ class SignUpComponent extends React.Component {
           <button onClick={this.makeTeams} className="waves-effect waves-light btn">Make Teams</button>
           </div>
 
-              <div className="col s4">
-
-              </div>
-              <div className="col s2 " style={{textAlign: "center"}}>
+              <div className="col s2" style={{textAlign: "center"}}>
                   <br/>
                   <br/>
                   <br/>
@@ -330,88 +327,88 @@ class SignUpComponent extends React.Component {
 
               </div>
               <div className="col s4">
+                  <div className="stage">
+                      <div className="world">
+                          <div className="team">
 
+                              {this.state.firstTeam && this.state.firstTeam.map((player, i)=>
+                                  <div className="player" style={this.getPosition(i)}>
+                                      <div className="player__placeholder">
+                                      </div>
+                                      <div className="player__card">
+                                          <h3>{player.name}</h3>
+                                          <ul className="player__card__list">
+                                              <li>DOB<br/>{player.dob}</li>
+                                              <li>Height<br/>{player.height}</li>
+                                              <li>Origin<br/>{player.origin}</li>
+                                          </ul>
+                                          <ul className="player__card__list player__card__list--last">
+                                              <li><span>Games</span><br/>{player.games}</li>
+                                              <li><span>Goals</span><br/>{player.goals}</li>
+                                          </ul>
+                                      </div>
+                                      <div className="player__label" style={{display:"block", opacity: "1"}}>
+                                          <span>{player.name}</span>
+                                      </div>
+                                      <div className="player__img"><img
+                                          src={"https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/"+player.asset}/>
+                                      </div>
+                                  </div>
+                              )}
+
+                              {this.state.secondTeam && this.state.secondTeam.map((player, i)=>
+                                  <div className="player" style={this.getPosition(i+5)}>
+                                      <div className="player__placeholder">
+                                      </div>
+                                      <div className="player__card">
+                                          <h3>{player.name}</h3>
+                                          <ul className="player__card__list">
+                                              <li>DOB<br/>{player.dob}</li>
+                                              <li>Height<br/>{player.height}</li>
+                                              <li>Origin<br/>{player.origin}</li>
+                                          </ul>
+                                          <ul className="player__card__list player__card__list--last">
+                                              <li><span>Games</span><br/>{player.games}</li>
+                                              <li><span>Goals</span><br/>{player.goals}</li>
+                                          </ul>
+                                      </div>
+                                      <div className="player__label" style={{display:"block", opacity: "1"}}>
+                                          <span>{player.name}</span>
+                                      </div>
+                                      <div className="player__img"><img
+                                          src={"https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/"+player.asset}/>
+                                      </div>
+                                  </div>
+                              )}
+
+                          </div>
+
+                          <div className="terrain">
+                              <div className="field ground">
+                                  <div className="field__texture field__texture--gradient"></div>
+                                  <div className="field__texture field__texture--gradient-b"></div>
+                                  <div className="field__texture field__texture--grass"></div>
+                                  <div className="field__line field__line--goal"></div>
+                                  <div className="field__line field__line--goal field__line--goal--far"></div>
+                                  <div className="field__line field__line--outline"></div>
+                                  <div className="field__line field__line--penalty"></div>
+                                  <div className="field__line field__line--penalty-arc"></div>
+                                  <div className="field__line field__line--penalty-arc field__line--penalty-arc--far"></div>
+                                  <div className="field__line field__line--mid"></div>
+                                  <div className="field__line field__line--circle"></div>
+                                  <div className="field__line field__line--penalty field__line--penalty--far"></div>
+                              </div>
+                              <div className="field__side"></div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <canvas id="pitch" width="600" height="600"></canvas>
           </div>
           </div>
 
           <div className="row">
-              <div className="stage">
-                  <div className="world">
-                      <div className="team">
 
-                          {this.state.firstTeam && this.state.firstTeam.map((player, i)=>
-                              <div className="player" style={this.getPosition(i)}>
-                                  <div className="player__placeholder">
-                                  </div>
-                                  <div className="player__card">
-                                      <h3>{player.name}</h3>
-                                      <ul className="player__card__list">
-                                          <li>DOB<br/>{player.dob}</li>
-                                          <li>Height<br/>{player.height}</li>
-                                          <li>Origin<br/>{player.origin}</li>
-                                      </ul>
-                                      <ul className="player__card__list player__card__list--last">
-                                          <li><span>Games</span><br/>{player.games}</li>
-                                          <li><span>Goals</span><br/>{player.goals}</li>
-                                      </ul>
-                                  </div>
-                                  <div className="player__label" style={{display:"block", opacity: "1"}}>
-                                      <span>{player.name}</span>
-                                  </div>
-                                  <div className="player__img"><img
-                                      src={"https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/"+player.asset}/>
-                                  </div>
-                              </div>
-                          )}
-
-                          {this.state.secondTeam && this.state.secondTeam.map((player, i)=>
-                              <div className="player" style={this.getPosition(i+5)}>
-                                  <div className="player__placeholder">
-                                  </div>
-                                  <div className="player__card">
-                                      <h3>{player.name}</h3>
-                                      <ul className="player__card__list">
-                                          <li>DOB<br/>{player.dob}</li>
-                                          <li>Height<br/>{player.height}</li>
-                                          <li>Origin<br/>{player.origin}</li>
-                                      </ul>
-                                      <ul className="player__card__list player__card__list--last">
-                                          <li><span>Games</span><br/>{player.games}</li>
-                                          <li><span>Goals</span><br/>{player.goals}</li>
-                                      </ul>
-                                  </div>
-                                  <div className="player__label" style={{display:"block", opacity: "1"}}>
-                                      <span>{player.name}</span>
-                                  </div>
-                                  <div className="player__img"><img
-                                      src={"https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/"+player.asset}/>
-                                  </div>
-                              </div>
-                          )}
-
-                      </div>
-
-                      <div className="terrain">
-                          <div className="field ground">
-                              <div className="field__texture field__texture--gradient"></div>
-                              <div className="field__texture field__texture--gradient-b"></div>
-                              <div className="field__texture field__texture--grass"></div>
-                              <div className="field__line field__line--goal"></div>
-                              <div className="field__line field__line--goal field__line--goal--far"></div>
-                              <div className="field__line field__line--outline"></div>
-                              <div className="field__line field__line--penalty"></div>
-                              <div className="field__line field__line--penalty-arc"></div>
-                              <div className="field__line field__line--penalty-arc field__line--penalty-arc--far"></div>
-                              <div className="field__line field__line--mid"></div>
-                              <div className="field__line field__line--circle"></div>
-                              <div className="field__line field__line--penalty field__line--penalty--far"></div>
-                          </div>
-                          <div className="field__side"></div>
-                      </div>
-                  </div>
-              </div>
-
-              <canvas id="pitch" width="600" height="600"></canvas>
 
           </div>
 

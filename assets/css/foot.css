@@ -518,5 +518,11 @@ ul#starting_11 .selected {
 ul#starting_11 .selected img {
     z-index: -1;
 }
+@media only screen and (max-width: 1536px) {
+    .stage {
+        left: 714px;
+    }
+}
+
 
 
